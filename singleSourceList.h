@@ -1,5 +1,6 @@
 #include "checkers_pos.h"
 #include "singleSourceMovesTree.h"
+
 #define NULL_TREE -1
 #define LEFT 0
 #define RIGHT 1
@@ -22,7 +23,7 @@ SingleSourceMovesList* initDynamicMemList();
 
 void makeEmptyList(SingleSourceMovesList* lst);
 
-void FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* source, SingleSourceMovesList* lst, int depth, bool flag);
+void FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* source, SingleSourceMovesList* lst, int depth, bool* flag);
 
 int getTreeDepth(SingleSourceMovesTree* moves_tree);
 
@@ -37,3 +38,7 @@ void insertDataToStartOfMovesList(SingleSourceMovesList* lst, checkersPos* pos, 
 bool isEmptyList(SingleSourceMovesList* lst);
 
 int getMax(int a, int b);
+
+void freeMovesList(SingleSourceMovesList* lst);
+
+void freeMovesListNode(SingleSourceMovesListCell* node);

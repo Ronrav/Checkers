@@ -16,3 +16,8 @@ bool isCheckersPosValid(int row, int col)
 		return true;
 	return false;
 }
+
+void freeCheckersPos(checkersPos* p)
+{
+	free(p);
+}

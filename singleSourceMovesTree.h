@@ -1,6 +1,4 @@
-#define BOARD_SIZE 8
-typedef unsigned char Board[BOARD_SIZE][BOARD_SIZE];
-typedef unsigned char Player;
+#include "board.h"
 typedef struct _SingleSourceMoveTreeNode {
 
 	Board board;

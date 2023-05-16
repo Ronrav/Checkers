@@ -110,3 +110,21 @@ void insertDataToStartOfMovesList(SingleSourceMovesList* lst, checkersPos* pos, 
 	node = createNewMovesListNode(pos, captures, NULL);
 	insertNodeToStartOfMovesList(lst, node);
 }
+
+void freeMovesList(SingleSourceMovesList* lst)
+{
+	SingleSourceMovesListCell* curr = lst->head, * tmp;
+	while (curr != NULL)
+	{
+		tmp = curr->next;
+		freeMovesListNode(curr);
+		curr = tmp;
+	}
+	free(lst);
+}
+
+void freeMovesListNode(SingleSourceMovesListCell* node)
+{
+	freeCheckersPos(node->position);
+	free(node);
+}
