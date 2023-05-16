@@ -8,4 +8,5 @@ typedef struct _checkersPos {
 //allocate and verify memory for checkersPos
 void initCheckersPos(checkersPos* p);
 
+//verify a checkersPos is within the board borders
 bool isCheckersPosValid(int row, int col);
