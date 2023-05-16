@@ -27,6 +27,9 @@
     <ClCompile Include="singleSourceList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="checkers_pos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="board.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="singleSourceList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="checkers_pos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -128,12 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="board.c" />
+    <ClCompile Include="checkers_pos.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="singleSourceList.c" />
     <ClCompile Include="singleSourceMovesTree.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="board.h" />
+    <ClInclude Include="checkers_pos.h" />
     <ClInclude Include="singleSourceList.h" />
     <ClInclude Include="singleSourceMovesTree.h" />
   </ItemGroup>
