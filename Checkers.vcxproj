@@ -136,6 +136,7 @@
     <ClInclude Include="board.h" />
     <ClInclude Include="singleSourceList.h" />
     <ClInclude Include="singleSourceMovesTree.h" />
+    <ClInclude Include="tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
