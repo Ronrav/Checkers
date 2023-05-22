@@ -2,7 +2,25 @@
 
 MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 {
+	MultipleSourceMovesList* mul_moves_lst = initDynamicMemMultipleMovesList();
 
+	int i, j;
+	SingleSourceMovesTree* moves_tree;
+	SingleSourceMovesList* single_moves_lst;
+	for (i = 0; i < BOARD_SIZE; i++)
+	{
+		for (j = 0; j < BOARD_SIZE; j++)
+		{
+			if (board[i][j] == player)
+			{
+				checkersPos* pos = getCurrentPos(i, j);
+				//moves_tree = findSingleSourceMoves(board, pos)
+				single_moves_lst = FindSingleSourceOptimalMove(moves_tree);
+				insertDataToStartOfMultipleMovesList(mul_moves_lst, single_moves_lst);
+			}
+		}
+	}
+	return mul_moves_lst;
 }
 
 void insertNodeToStartOfMultipleMovesList(MultipleSourceMovesList* lst, MultipleSourceMovesListCell* node)

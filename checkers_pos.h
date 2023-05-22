@@ -13,3 +13,5 @@ void initCheckersPos(checkersPos* p);
 bool isCheckersPosValid(int row, int col);
 
 void freeCheckersPos(checkersPos* p);
+
+checkersPos* getCurrentPos(int row, int col);
