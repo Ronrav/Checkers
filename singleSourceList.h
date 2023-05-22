@@ -1,3 +1,4 @@
+#pragma once
 #include "checkers_pos.h"
 #include "singleSourceMovesTree.h"
 
