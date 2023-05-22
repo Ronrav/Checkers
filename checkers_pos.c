@@ -1,13 +1,15 @@
 #include "checkers_pos.h"
 
-void initCheckersPos(checkersPos* p)
+checkersPos* initCheckersPos()
 {
+	checkersPos* p;
 	p = (checkersPos*)malloc(sizeof(checkersPos));
 	if (p == NULL)
 	{
 		printf("Memory allocation failed. Exiting");
 		exit(1);
 	}
+	return p;
 }
 
 bool isCheckersPosValid(int row, int col)
@@ -24,8 +26,7 @@ void freeCheckersPos(checkersPos* p)
 
 checkersPos* getCurrentPos(int row, int col)
 {
-	checkersPos* pos;
-	initCheckersPos(pos);
+	checkersPos* pos = initCheckersPos();
 	pos->row = row + 'A'; //set matching char row num
 	pos->col = col + '0';	//set matching char col num
 	return pos;
