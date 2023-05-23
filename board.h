@@ -17,18 +17,25 @@
 typedef unsigned char Player;
 typedef unsigned char Board[BOARD_SIZE][BOARD_SIZE];
 
+/*This function prints a checkers board in a proper format*/
 void printBoard(Board board);
 
+/*This function prints a checkers board header*/
 void printBoardHeader();
 
+/*side function for board printing*/
 void printSepLine();
 
-void reviewBoard(Player player1, Player player2, Player* winner);
+bool reviewBoard(Player player1, Player player2, Player* winner);
 
+/*This function initialise a checkers board for the start of the game*/
 void initBoard(Board board);
 
+/*This function checks if one of Player1 pieces reached the end of the board*/
 bool isPlayer1Winner(Board board);
 
+/*This function checks if one of Player2 pieces reached the end of the board*/
 bool isPlayer2Winner(Board board);
 
+/*This function starts and completes the gameplay according to instructions*/
 void PlayGame(Board board, Player starting_player);

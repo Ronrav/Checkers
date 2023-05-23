@@ -129,4 +129,5 @@ bool reviewBoard(Board board, Player* winner)
 		*winner = PLAYER2;
 		return true;
 	}
+	int p1_cnt = 0, p2_cnt = 0;
 }
