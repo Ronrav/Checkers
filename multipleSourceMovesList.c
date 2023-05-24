@@ -14,7 +14,7 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 			if (board[i][j] == player)
 			{
 				checkersPos* pos = getCurrentPos(i, j);
-				//moves_tree = findSingleSourceMoves(board, pos)
+				moves_tree = FindSingleSourceMoves(board, pos);
 				single_moves_lst = FindSingleSourceOptimalMove(moves_tree);
 				insertDataToStartOfMultipleMovesList(mul_moves_lst, single_moves_lst);
 			}
@@ -41,7 +41,7 @@ MultipleSourceMovesListCell* createNewMultipleMovesListNode(SingleSourceMovesLis
 	}
 	node->next = next;
 	node->single_source_moves_list = single_moves_list;
-
+	return node;
 }
 
 void insertDataToStartOfMultipleMovesList(MultipleSourceMovesList* lst, SingleSourceMovesList* single_moves_list)

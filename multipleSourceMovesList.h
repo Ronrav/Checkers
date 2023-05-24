@@ -1,7 +1,6 @@
 #ifndef MULTIPLE_SOURCE_MOVES_LIST_H
 #define MULTIPLE_SOURCE_MOVES_LIST_H
 
-
 #include "board.h"
 #include "singleSourceList.h"
 

@@ -8,7 +8,7 @@ SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_
 	int depth = getTreeDepth(moves_tree);
 	SingleSourceMovesList* lst = initDynamicMemList();
 	bool found_left = false, found_right = false;
-	FindSingleSourceOptimalMoveHelper(moves_tree->source, lst, depth, found_left);
+	FindSingleSourceOptimalMoveHelper(moves_tree->source, lst, depth, &found_left);
 	//free tree
 	return lst;
 }
