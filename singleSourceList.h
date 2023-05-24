@@ -1,7 +1,7 @@
 #ifndef SINGLE_SOURCE_LIST_H
 #define SINGLE_SOURCE_LIST_H
 
-
+#include "board.h"
 #include "checkersPos.h"
 #include "singleSourceMovesTree.h"
 

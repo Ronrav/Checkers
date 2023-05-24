@@ -59,12 +59,14 @@ SingleSourceMovesTreeNode* FindSingleSourcesMovesHelper(Board board, checkersPos
 	return new;
 
 }
+
 bool hasCaptured(checkersPos curr, checkersPos new)
 {
 	if (curr.col - new.col == 2 || curr.col - new.col == (-2))
 		return true;
 	return false;
 }
+
 void copyBoard(Board src, Board dest)
 {
 	int i, j;
@@ -74,6 +76,7 @@ void copyBoard(Board src, Board dest)
 			dest[i][j] = src[i][j];
 	}
 }
+
 void fillNewBoard(Board src, checkersPos curr_pos, Board dest, checkersPos new_pos)
 {
 	int delete_in_row, delete_in_col;
@@ -116,7 +119,6 @@ bool findLeftMove(Board board, checkersPos pos, checkersPos* new_pos, bool is_fi
 	return flag;
 }
 
-
 bool findRightMoveForTPlayer(Board board, checkersPos pos, checkersPos* new_pos, bool is_first_step)
 {
 	new_pos->row = new_pos->col = NOT_FOUND;
@@ -149,6 +151,7 @@ bool findRightMoveForTPlayer(Board board, checkersPos pos, checkersPos* new_pos,
 	return false;
 
 }
+
 bool findLeftMoveForTPlayer(Board board, checkersPos pos, checkersPos* new_pos, bool is_first_step)
 {
 	new_pos->row = new_pos->col = NOT_FOUND;
@@ -178,6 +181,7 @@ bool findLeftMoveForTPlayer(Board board, checkersPos pos, checkersPos* new_pos, 
 	return false;
 
 }
+
 bool findRightMoveForBPlayer(Board board, checkersPos pos, checkersPos* new_pos, bool is_first_step)
 {
 	new_pos->row = new_pos->col = NOT_FOUND;
@@ -207,6 +211,7 @@ bool findRightMoveForBPlayer(Board board, checkersPos pos, checkersPos* new_pos,
 	return false;
 
 }
+
 bool findLeftMoveForBPlayer(Board board, checkersPos pos, checkersPos* new_pos, bool is_first_step)
 {
 	new_pos->row = new_pos->col = NOT_FOUND;
@@ -249,10 +254,12 @@ SingleSourceMovesTreeNode* createNewTNODE(Board pboard, checkersPos pos, SingleS
 	return res;
 
 }
+
 void printTree(SingleSourceMovesTree t)
 {
 	helper(t.source);
 }
+
 void helper(SingleSourceMovesTreeNode* r)
 {
 	if (r == NULL)

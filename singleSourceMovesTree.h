@@ -7,7 +7,7 @@
 #include "board.h"
 #include "checkersPos.h"
 
-#define EMPTY ' '
+#define NULL_TREE (-1)
 #define BOARD_SIZE 8
 #define T_FIRST_IN_ROW BOARD_SIZE+'0'
 #define T_LAST_IN_ROW '1'

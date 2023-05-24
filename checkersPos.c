@@ -1,5 +1,5 @@
 #include "checkersPos.h"
-
+//#include <stdlib.h>
 checkersPos* initCheckersPos()
 {
 	checkersPos* p;
@@ -28,6 +28,6 @@ checkersPos* getCurrentPos(int row, int col)
 {
 	checkersPos* pos = initCheckersPos();
 	pos->row = row + 'A'; //set matching char row num
-	pos->col = col + '0';	//set matching char col num
+	pos->col = col + '1';	//set matching char col num
 	return pos;
 }

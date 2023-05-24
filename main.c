@@ -5,5 +5,5 @@ void main()
 	printf("testing");
 	Board board;
 	initBoard(board);
-	//PlayGame(board, PLAYER1);
+	PlayGame(board, PLAYER1);
 }
