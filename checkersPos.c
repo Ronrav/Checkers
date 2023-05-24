@@ -1,4 +1,4 @@
-#include "checkers_pos.h"
+#include "checkersPos.h"
 
 checkersPos* initCheckersPos()
 {

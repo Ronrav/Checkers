@@ -1,4 +1,7 @@
-#pragma once
+#ifndef CHECKERS_POS_H
+#define CHECKERS_POS_H
+
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -19,3 +22,5 @@ void freeCheckersPos(checkersPos* p);
 /*This function receives an row and col integers between 0-7.
 The function creates inits a checkersPos struct and set's it's values according to row and col*/
 checkersPos* getCurrentPos(int row, int col);
+
+#endif // CHECKERS_POS_H

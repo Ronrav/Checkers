@@ -27,13 +27,16 @@
     <ClCompile Include="singleSourceList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="checkers_pos.c">
+    <ClCompile Include="checkersPos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="multipleSourceMovesList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="turn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="playGame.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,13 +50,16 @@
     <ClInclude Include="singleSourceList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="checkers_pos.h">
+    <ClInclude Include="checkersPos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="multipleSourceMovesList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="turn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="playGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,6 +9,8 @@ SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_
 	SingleSourceMovesList* lst = initDynamicMemList();
 	bool found_left = false, found_right = false;
 	FindSingleSourceOptimalMoveHelper(moves_tree->source, lst, depth, found_left);
+	//free tree
+	return lst;
 }
 
 void FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* source, SingleSourceMovesList* lst, int depth, bool* flag)

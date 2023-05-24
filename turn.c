@@ -12,6 +12,7 @@ void Turn(Board board, Player player)
 		node = node->next;
 	}
 	updateBoard(board, best_move, player);
+	//free MultipleSourceMovesList
 	
 }
 
@@ -23,7 +24,7 @@ SingleSourceMovesList* getBetterMove(SingleSourceMovesList* move1, SingleSourceM
 		return move2;
 	else	//captures are equal, compare according to starting position
 	{
-		if (player == 'B')
+		if (player == PLAYER1)
 			return getBetterBMove(move1, move2);
 		else	//player == 'T'
 			return getBetterTMove(move1, move2);

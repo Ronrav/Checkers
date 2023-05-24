@@ -1,4 +1,7 @@
-#pragma once
+#ifndef MULTIPLE_SOURCE_MOVES_LIST_H
+#define MULTIPLE_SOURCE_MOVES_LIST_H
+
+
 #include "board.h"
 #include "singleSourceList.h"
 
@@ -20,7 +23,7 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player);
 void insertNodeToStartOfMultipleMovesList(MultipleSourceMovesList* lst, MultipleSourceMovesListCell * node);
 
 /*This function creates a new MultipleSourceMovesListCell*/
-MultipleSourceMovesListCell* createNewMovesListNode(SingleSourceMovesList* single_moves_list, MultipleSourceMovesListCell* next);
+MultipleSourceMovesListCell* createNewMultipleMovesListNode(SingleSourceMovesList* single_moves_list, MultipleSourceMovesListCell* next);
 
 /*This function inserts a SingleSourceMovesList to the start of MultipleSourceMovesList*/
 void insertDataToStartOfMultipleMovesList(MultipleSourceMovesList* lst, SingleSourceMovesList* single_moves_list);
@@ -37,3 +40,5 @@ MultipleSourceMovesList* initDynamicMemMultipleMovesList();
 
 /*This function makes a MultipleSourceMovesList empty*/
 void makeMultipleMovesEmptyList(MultipleSourceMovesList* lst);
+
+#endif // !MULTIPLE_SOURCE_MOVES_LIST_H

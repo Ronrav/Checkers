@@ -128,17 +128,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="board.c" />
-    <ClCompile Include="checkers_pos.c" />
+    <ClCompile Include="checkersPos.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="multipleSourceMovesList.c" />
+    <ClCompile Include="playGame.c" />
     <ClCompile Include="singleSourceList.c" />
     <ClCompile Include="singleSourceMovesTree.c" />
     <ClCompile Include="turn.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="board.h" />
-    <ClInclude Include="checkers_pos.h" />
+    <ClInclude Include="checkersPos.h" />
     <ClInclude Include="multipleSourceMovesList.h" />
+    <ClInclude Include="playGame.h" />
     <ClInclude Include="singleSourceList.h" />
     <ClInclude Include="singleSourceMovesTree.h" />
     <ClInclude Include="turn.h" />

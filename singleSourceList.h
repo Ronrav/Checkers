@@ -1,5 +1,8 @@
-#pragma once
-#include "checkers_pos.h"
+#ifndef SINGLE_SOURCE_LIST_H
+#define SINGLE_SOURCE_LIST_H
+
+
+#include "checkersPos.h"
 #include "singleSourceMovesTree.h"
 
 #define NULL_TREE -1
@@ -43,3 +46,5 @@ int getMax(int a, int b);
 void freeMovesList(SingleSourceMovesList* lst);
 
 void freeMovesListNode(SingleSourceMovesListCell* node);
+
+#endif // !SINGLE_SOURCE_LIST_H
