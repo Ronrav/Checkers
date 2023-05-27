@@ -24,4 +24,7 @@ SingleSourceMovesList* getBetterTMove(SingleSourceMovesList* move1, SingleSource
 /*This function receives the board and a performed move, and updates the board accordingly*/
 void updateBoard(Board board, SingleSourceMovesList* moves_list, Player player);
 
+//this function prints the player's details before his turn
+void printTurnDetails(Player player, SingleSourceMovesList* lst);
+
 #endif

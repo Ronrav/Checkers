@@ -10,9 +10,14 @@ void Turn(Board board, Player player)
 		best_move = getBetterMove(node->single_source_moves_list, best_move, player);
 		node = node->next;
 	}
+	printTurnDetails(player, best_move);
 	updateBoard(board, best_move, player);
-	//free MultipleSourceMovesList
+	freeMultipleMovesList(lst);
 	
+}
+void printTurnDetails(Player player, SingleSourceMovesList* lst)
+{
+	printf("\n%c's turn:\n%c%c -> %c%c", player, lst->head->position->row, lst->head->position->col, lst->tail->position->row, lst->tail->position->col);
 }
 
 SingleSourceMovesList* getBetterMove(SingleSourceMovesList* move1, SingleSourceMovesList* move2, Player player)
@@ -21,13 +26,6 @@ SingleSourceMovesList* getBetterMove(SingleSourceMovesList* move1, SingleSourceM
 		return move1;
 	else
 		return move2;
-	//else	//captures are equal, compare according to starting position
-	//{
-	//	if (player == PLAYER1)
-	//		return getBetterBMove(move1, move2);
-	//	else	//player == 'T'
-	//		return getBetterTMove(move1, move2);
-	//}
 }
 
 SingleSourceMovesList* getBetterBMove(SingleSourceMovesList* move1, SingleSourceMovesList* move2)

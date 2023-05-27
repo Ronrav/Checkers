@@ -18,17 +18,19 @@ SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_
 	}
 	else
 		FindSingleSourceOptimalMoveHelper(moves_tree->source, lst, max_captures, &found);
-	//freeTree(moves_tree);
+	freeTree(moves_tree);
 	return lst;
 }
 
 void FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* source, SingleSourceMovesList* lst, int max_captures, bool* flag)
 {
 	bool left_flag = false, right_flag = false;
+	checkersPos new_pos;
 	if (source == NULL || source->pos->col == NOT_FOUND || source->pos->row == NOT_FOUND)
 		return;
 	if (source->total_capture_so_far == max_captures)// && (source->next_move[LEFT] == NULL && source->next_move[RIGHT] == NULL))
 	{
+		//copy pos
 		insertDataToStartOfMovesList(lst, source->pos, source->total_capture_so_far);
 		*flag = true;
 		return;
@@ -144,7 +146,9 @@ SingleSourceMovesListCell* createNewMovesListNode(checkersPos* pos, unsigned sho
 		exit(1);
 	}
 	node->captures = captures;
-	node->position = pos;
+	node->position = initCheckersPos();
+	node->position->row = pos->row;
+	node->position->col = pos->col;
 	node->next = next;
 	return node;
 }

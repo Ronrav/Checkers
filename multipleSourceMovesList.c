@@ -100,11 +100,13 @@ bool isMultipleMovesEmptyList(MultipleSourceMovesList* lst)
 
 void freeMultipleMovesList(MultipleSourceMovesList* lst)
 {
-	MultipleSourceMovesListCell* curr = lst->head;
+	MultipleSourceMovesListCell* curr = lst->head, * tmp;
 	while (curr != NULL)
 	{
+		tmp = curr->next;
 		freeMovesList(curr->single_source_moves_list);
 		free(curr);
+		curr = tmp;
 	}
 	free(lst);
 }
