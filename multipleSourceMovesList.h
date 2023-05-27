@@ -30,7 +30,7 @@ void insertDataToStartOfMultipleMovesList(MultipleSourceMovesList* lst, SingleSo
 /*This function check if a MultipleSourceMovesList is empty*/
 bool isMultipleMovesEmptyList(MultipleSourceMovesList* lst);
 
-/*This function free's the memory of a dynamic */
+/*This function free's the memory of a dynamic multiple moves list */
 void freeMultipleMovesList(MultipleSourceMovesList* lst);
 
 /*This function inits a new MultipleSourceMovesList which includes
@@ -39,5 +39,15 @@ MultipleSourceMovesList* initDynamicMemMultipleMovesList();
 
 /*This function makes a MultipleSourceMovesList empty*/
 void makeMultipleMovesEmptyList(MultipleSourceMovesList* lst);
+
+/*this function checks if a single source list contains only 1 node*/
+bool isPossibleMove(SingleSourceMovesList lst);
+
+
+void insertDataToEndOfMultipleMovesList(MultipleSourceMovesList* lst, SingleSourceMovesList* single_moves_list);
+
+void insertNodeToEndOfMultipleMovesList(MultipleSourceMovesList* lst, MultipleSourceMovesListCell* node);
+
+void insertDataToPlayersPlaceInList(MultipleSourceMovesList* lst, SingleSourceMovesList* single_moves_lst, Player player);
 
 #endif // !MULTIPLE_SOURCE_MOVES_LIST_H

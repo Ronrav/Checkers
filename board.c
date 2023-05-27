@@ -42,14 +42,14 @@ void initBoard(Board board)
 	int i, j;
 	for (i = 0; i < STARTING_LINES; i++)
 	{
-		for (j = 1 - i % 2; j < BOARD_SIZE; j = j + 2)
+		for (j = (1 + i) % 2; j < BOARD_SIZE; j = j + 2)
 		{
 			board[i][j] = PLAYER1;
 		}
 	}
 	for (i = BOARD_SIZE - STARTING_LINES; i < BOARD_SIZE; i++)
 	{
-		for (j = 1 - i % 2; j < BOARD_SIZE; j = j + 2)
+		for (j = (1 + i) % 2; j < BOARD_SIZE; j = j + 2)
 		{
 			board[i][j] = PLAYER2;
 		}

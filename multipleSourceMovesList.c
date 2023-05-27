@@ -7,29 +7,59 @@ MultipleSourceMovesList* FindAllPossiblePlayerMoves(Board board, Player player)
 	int i, j;
 	SingleSourceMovesTree* moves_tree;
 	SingleSourceMovesList* single_moves_lst;
+	checkersPos* pos;
 	for (i = 0; i < BOARD_SIZE; i++)
 	{
 		for (j = 0; j < BOARD_SIZE; j++)
 		{
 			if (board[i][j] == player)
 			{
-				checkersPos* pos = getCurrentPos(i, j);
+				pos = getCurrentPos(i, j);
 				moves_tree = FindSingleSourceMoves(board, pos);
 				single_moves_lst = FindSingleSourceOptimalMove(moves_tree);
-				insertDataToStartOfMultipleMovesList(mul_moves_lst, single_moves_lst);
+				if (isPossibleMove(*single_moves_lst))
+					insertDataToPlayersPlaceInList(mul_moves_lst, single_moves_lst, player);
 			}
 		}
 	}
 	return mul_moves_lst;
 }
 
+void insertDataToPlayersPlaceInList(MultipleSourceMovesList* lst, SingleSourceMovesList* single_moves_lst, Player player)
+{
+	if (player == PLAYER1)
+		insertDataToStartOfMultipleMovesList(lst, single_moves_lst);
+	if (player == PLAYER2)
+		insertDataToEndOfMultipleMovesList(lst, single_moves_lst);
+}
+
+bool isPossibleMove(SingleSourceMovesList lst)
+{
+	if (lst.head == lst.tail)
+		return false;
+	return true;
+}
+
 void insertNodeToStartOfMultipleMovesList(MultipleSourceMovesList* lst, MultipleSourceMovesListCell* node)
 {
-	node->next = lst->head;
-	lst->head = node;
 	if (isMultipleMovesEmptyList(lst))
 		lst->tail = node;
+	else
+		node->next = lst->head;
+	lst->head = node;
+	
 }
+
+void insertNodeToEndOfMultipleMovesList(MultipleSourceMovesList* lst, MultipleSourceMovesListCell* node)
+{
+	if (isMultipleMovesEmptyList(lst))
+		lst->head = node;
+	else
+		lst->tail->next = node;
+	lst->tail = node;
+
+}
+
 
 MultipleSourceMovesListCell* createNewMultipleMovesListNode(SingleSourceMovesList* single_moves_list, MultipleSourceMovesListCell* next)
 {
@@ -44,13 +74,21 @@ MultipleSourceMovesListCell* createNewMultipleMovesListNode(SingleSourceMovesLis
 	return node;
 }
 
+
 void insertDataToStartOfMultipleMovesList(MultipleSourceMovesList* lst, SingleSourceMovesList* single_moves_list)
 {
 	MultipleSourceMovesListCell* node = createNewMultipleMovesListNode(single_moves_list, NULL);
-	lst->head = node;
+	if (node == NULL)
+		exit(1);
 	insertNodeToStartOfMultipleMovesList(lst, node);
+}
 
-
+void insertDataToEndOfMultipleMovesList(MultipleSourceMovesList* lst, SingleSourceMovesList* single_moves_list)
+{
+	MultipleSourceMovesListCell* node = createNewMultipleMovesListNode(single_moves_list, NULL);
+	if (node == NULL)
+		exit(1);
+	insertNodeToEndOfMultipleMovesList(lst, node);
 }
 
 bool isMultipleMovesEmptyList(MultipleSourceMovesList* lst)

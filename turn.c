@@ -3,9 +3,8 @@
 void Turn(Board board, Player player)
 {
 	MultipleSourceMovesList* lst = FindAllPossiblePlayerMoves(board, player);
-	MultipleSourceMovesListCell* node = lst->head;
-	SingleSourceMovesList* best_move = node->single_source_moves_list;
-	node = node->next;
+	MultipleSourceMovesListCell* node = lst->head->next;
+	SingleSourceMovesList* best_move = lst->head->single_source_moves_list;
 	while (node != NULL)
 	{
 		best_move = getBetterMove(node->single_source_moves_list, best_move, player);
@@ -18,17 +17,17 @@ void Turn(Board board, Player player)
 
 SingleSourceMovesList* getBetterMove(SingleSourceMovesList* move1, SingleSourceMovesList* move2, Player player)
 {
-	if (move1->tail->captures > move2->tail->captures)
+	if (move2->tail->captures < move1->tail->captures)
 		return move1;
-	else if (move1->tail->captures < move2->tail->captures)
+	else
 		return move2;
-	else	//captures are equal, compare according to starting position
-	{
-		if (player == PLAYER1)
-			return getBetterBMove(move1, move2);
-		else	//player == 'T'
-			return getBetterTMove(move1, move2);
-	}
+	//else	//captures are equal, compare according to starting position
+	//{
+	//	if (player == PLAYER1)
+	//		return getBetterBMove(move1, move2);
+	//	else	//player == 'T'
+	//		return getBetterTMove(move1, move2);
+	//}
 }
 
 SingleSourceMovesList* getBetterBMove(SingleSourceMovesList* move1, SingleSourceMovesList* move2)
@@ -61,9 +60,9 @@ void updateBoard(Board board, SingleSourceMovesList* moves_list, Player player)
 	while (node->next != NULL)
 	{
 		cur_row = node->position->row - 'A';
-		cur_col = node->position->col - '0';
+		cur_col = node->position->col - '1';
 		next_row = node->next->position->row - 'A';
-		next_col = node->next->position->col - '0';
+		next_col = node->next->position->col - '1';
 		
 		board[next_row][next_col] = player;
 		board[cur_row][cur_col] = EMPTY;
@@ -71,7 +70,7 @@ void updateBoard(Board board, SingleSourceMovesList* moves_list, Player player)
 		{
 			captured_row = (cur_row + next_row) / 2;
 			captured_col = (cur_col + next_col) / 2;
-			board[captured_col][captured_row] = EMPTY;
+			board[captured_row][captured_col] = EMPTY;
 			captures--;
 		}
 		node = node->next;

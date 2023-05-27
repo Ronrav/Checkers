@@ -5,33 +5,50 @@
 
 SingleSourceMovesList* FindSingleSourceOptimalMove(SingleSourceMovesTree* moves_tree)
 {
-	int depth = getTreeDepth(moves_tree);
+	int max_captures = getMaxCaptures(moves_tree);
 	SingleSourceMovesList* lst = initDynamicMemList();
 	bool found = false;
-	FindSingleSourceOptimalMoveHelper(moves_tree->source, lst, depth, &found);
-	//free tree
+	if (max_captures == 0)
+	{
+		if(moves_tree->source->next_move[LEFT] != NULL)// && moves_tree->source->pos->col != NOT_FOUND)
+			insertDataToStartOfMovesList(lst, moves_tree->source->next_move[LEFT]->pos, 0);
+		else if (moves_tree->source->next_move[RIGHT] != NULL)// && moves_tree->source->pos->col != NOT_FOUND)
+			insertDataToStartOfMovesList(lst, moves_tree->source->next_move[RIGHT]->pos, 0);
+		insertDataToStartOfMovesList(lst, moves_tree->source->pos, 0);
+	}
+	else
+		FindSingleSourceOptimalMoveHelper(moves_tree->source, lst, max_captures, &found);
+	//freeTree(moves_tree);
 	return lst;
 }
 
-void FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* source, SingleSourceMovesList* lst, int depth, bool* flag)
+void FindSingleSourceOptimalMoveHelper(SingleSourceMovesTreeNode* source, SingleSourceMovesList* lst, int max_captures, bool* flag)
 {
-	if (source == NULL)
+	bool left_flag = false, right_flag = false;
+	if (source == NULL || source->pos->col == NOT_FOUND || source->pos->row == NOT_FOUND)
 		return;
-	if (depth == 0)
+	if (source->total_capture_so_far == max_captures)// && (source->next_move[LEFT] == NULL && source->next_move[RIGHT] == NULL))
 	{
 		insertDataToStartOfMovesList(lst, source->pos, source->total_capture_so_far);
 		*flag = true;
 		return;
 	}
-	FindSingleSourceOptimalMoveHelper(source->next_move[LEFT], lst, depth - 1, flag);
-	if (*flag)
+	FindSingleSourceOptimalMoveHelper(source->next_move[LEFT], lst, max_captures, &left_flag);
+	if (left_flag)
 	{
 		insertDataToStartOfMovesList(lst, source->pos, source->total_capture_so_far);
-		return;
+		*flag = true;
 	}
-	FindSingleSourceOptimalMoveHelper(source->next_move[RIGHT], lst, depth - 1, flag);
-	if (*flag)
-		insertDataToStartOfMovesList(lst, source->pos, source->total_capture_so_far);	
+	else
+	{
+		FindSingleSourceOptimalMoveHelper(source->next_move[RIGHT], lst, max_captures, &right_flag);
+		if (right_flag)
+		{
+			insertDataToStartOfMovesList(lst, source->pos, source->total_capture_so_far);
+			*flag = true;
+		}
+	}
+
 }
 
 SingleSourceMovesList* initDynamicMemList()
@@ -66,8 +83,33 @@ int getTreeDepthHelper(SingleSourceMovesTreeNode* source)
 		return 0;
 	left = getTreeDepthHelper(source->next_move[LEFT]);
 	right = getTreeDepthHelper(source->next_move[RIGHT]);
-	return (max(left, right) + 1);
+	return (getMax(left, right) + 1);
 }
+
+int getMaxCaptures(SingleSourceMovesTree* moves_tree)
+{
+	if (moves_tree->source == NULL)
+		return NULL_TREE;
+	int max = 0;
+	getMaxCapturesHelper(moves_tree->source, &max);
+	return max;
+}
+
+void getMaxCapturesHelper(SingleSourceMovesTreeNode* source, int* max)
+{
+	int left, right;
+	if (source == NULL)
+		return;
+	if (source->next_move[LEFT] == NULL && source->next_move[RIGHT] == NULL && source->total_capture_so_far > *max)
+		*max = source->total_capture_so_far;
+	else
+	{
+		getMaxCapturesHelper(source->next_move[LEFT], max);
+		getMaxCapturesHelper(source->next_move[RIGHT], max);
+	}
+}
+
+
 
 int getMax(int a, int b)
 {
@@ -85,10 +127,11 @@ bool isEmptyList(SingleSourceMovesList* lst)
 
 void insertNodeToStartOfMovesList(SingleSourceMovesList* lst, SingleSourceMovesListCell* node)
 {
-	node->next = lst->head;
-	lst->head = node;
-	if(isEmptyList(lst))
+	if (isEmptyList(lst))
 		lst->tail = node;
+	else
+		node->next = lst->head;
+	lst->head = node;
 }
 
 SingleSourceMovesListCell* createNewMovesListNode(checkersPos* pos, unsigned short captures, SingleSourceMovesListCell* next)
