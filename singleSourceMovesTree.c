@@ -9,7 +9,7 @@ SingleSourceMovesTree* FindSingleSourceMoves(Board board, checkersPos* src)
 	new = (SingleSourceMovesTree*)malloc(sizeof(SingleSourceMovesTree));
 	if (new == NULL)
 		exit(1);
-	int captures_counter = 0;
+	unsigned short captures_counter = 0;
 
 	if (board[src->row - 'A'][src->col - '1'] == EMPTY)
 		return NULL;
@@ -19,10 +19,10 @@ SingleSourceMovesTree* FindSingleSourceMoves(Board board, checkersPos* src)
 
 }
 
-SingleSourceMovesTreeNode* FindSingleSourcesMovesHelper(Board board, checkersPos pos, bool IsFirstStep, int* captures_counter)
+SingleSourceMovesTreeNode* FindSingleSourcesMovesHelper(Board board, checkersPos pos, bool IsFirstStep, unsigned short* captures_counter)
 {
 	bool took_first_step = false;
-	int right_capture_counter, left_capture_counter;
+	unsigned short right_capture_counter, left_capture_counter;
 	Player player = board[pos.row - 'A'][pos.col - '1'];
 	checkersPos right_move_pos, left_move_pos;
 	bool is_right_move_possible = false, is_left_move_possible = false;
@@ -89,7 +89,7 @@ void copyBoard(Board src, Board dest)
 void fillNewBoard(Board src, checkersPos curr_pos, Board dest, checkersPos new_pos)
 {
 	int delete_in_row, delete_in_col;
-	char p = src[curr_pos.row - 'A'][curr_pos.col - '1'];
+	Player p = src[curr_pos.row - 'A'][curr_pos.col - '1'];
 	copyBoard(src, dest);
 	dest[curr_pos.row - 'A'][curr_pos.col - '1'] = EMPTY;
 	dest[new_pos.row - 'A'][new_pos.col - '1'] = p;
@@ -105,7 +105,7 @@ void fillNewBoard(Board src, checkersPos curr_pos, Board dest, checkersPos new_p
 }
 
 
-SingleSourceMovesTreeNode* createNewTNODE(Board pboard, checkersPos pos, SingleSourceMovesTreeNode* leftp, SingleSourceMovesTreeNode* rightp, int capture_caunter)
+SingleSourceMovesTreeNode* createNewTNODE(Board pboard, checkersPos pos, SingleSourceMovesTreeNode* leftp, SingleSourceMovesTreeNode* rightp, unsigned short capture_caunter)
 {
 	SingleSourceMovesTreeNode* res;
 	res = (SingleSourceMovesTreeNode*)malloc(sizeof(SingleSourceMovesTreeNode));
@@ -130,28 +130,6 @@ SingleSourceMovesTreeNode* createNewTNODE(Board pboard, checkersPos pos, SingleS
 
 }
 
-void printTree(SingleSourceMovesTree t)
-{
-	helper(t.source);
-}
-
-void helper(SingleSourceMovesTreeNode* r)
-{
-	if (r == NULL)
-		return;
-
-
-	for (int i = 0; i < BOARD_SIZE; i++)
-	{
-		for (int j = 0; j < BOARD_SIZE; j++)
-			printf("%c ", r->board[i][j]);
-		printf("\n");
-	}
-	if ((r->next_move)[LEFT] != NULL)
-		helper(r->next_move[LEFT]);
-	if (r->next_move[RIGHT] != NULL)
-		helper(r->next_move[RIGHT]);
-}
 
 void findPossibleMoves(Board board, checkersPos pos, checkersPos* right_new_pos, checkersPos* left_new_pos, bool is_first_step, bool* is_right_possible, bool* is_left_possible)
 {
@@ -173,7 +151,7 @@ void findPossibleMoves(Board board, checkersPos pos, checkersPos* right_new_pos,
 }
 
 
-void initVariablesToPlayer(int p, int* right, int* left, int* next_row)
+void initVariablesToPlayer(Player p, int* right, int* left, int* next_row)
 {
 	if (p == 'T')
 	{
@@ -189,7 +167,7 @@ void initVariablesToPlayer(int p, int* right, int* left, int* next_row)
 	}
 }
 
-bool findNextMove(Board board, checkersPos pos, checkersPos* new_pos, bool is_first_step, char p, int side, int next_row)
+bool findNextMove(Board board, checkersPos pos, checkersPos* new_pos, bool is_first_step,Player p, int side, int next_row)
 {
 	if (is_first_step)
 	{
@@ -214,9 +192,9 @@ bool isOneStepAvailble (Board board, checkersPos pos, int side, int next_row)
 {
 	return (board[pos.row - 'A' + next_row][pos.col - '1' + side] == EMPTY);
 }
-bool Is2StepsAvailable(Board board, checkersPos pos,char p, int side, int next_row)
+bool Is2StepsAvailable(Board board, checkersPos pos,Player p, int side, int next_row)
 {
-	char notMe;
+	Player notMe;
 	int newCol = pos.col - '1' + (2 * side);
 	int newRow = pos.row - 'A' + (2 * next_row);
 
@@ -238,7 +216,7 @@ bool Is2StepsAvailable(Board board, checkersPos pos,char p, int side, int next_r
 	return false;
 
 }
-bool pIsLeftMost(Board board, checkersPos pos, char player)
+bool pIsLeftMost(Board board, checkersPos pos, Player player)
 {
 	if (player == 'B' && pos.col == B_FIRST_IN_ROW)
 		return true;
@@ -246,7 +224,7 @@ bool pIsLeftMost(Board board, checkersPos pos, char player)
 		return true;
 	return false;
 }
-bool pIsRightMost(Board board, checkersPos pos, char player)
+bool pIsRightMost(Board board, checkersPos pos, Player player)
 {
 	if (player == 'B' && pos.col == B_LAST_IN_ROW)
 		return true;
