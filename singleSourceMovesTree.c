@@ -21,29 +21,22 @@ SingleSourceMovesTree* FindSingleSourceMoves(Board board, checkersPos* src)
 
 SingleSourceMovesTreeNode* FindSingleSourcesMovesHelper(Board board, checkersPos pos, bool IsFirstStep, unsigned short* captures_counter)
 {
-	bool took_first_step = false;
 	unsigned short right_capture_counter, left_capture_counter;
 	Player player = board[pos.row - 'A'][pos.col - '1'];
 	checkersPos right_move_pos, left_move_pos;
-	bool is_right_move_possible = false, is_left_move_possible = false;
-	bool left_has_captured = false, right_has_captured = false;
+	bool is_right_move_possible = false, is_left_move_possible = false, left_has_captured = false, right_has_captured = false;;
 	Board left_board, right_board;
 	right_capture_counter = left_capture_counter = *captures_counter;
-
-
 	SingleSourceMovesTreeNode* new = createNewTNODE(board, pos, NULL, NULL, *captures_counter);
 	findPossibleMoves(board, pos, &right_move_pos, &left_move_pos, IsFirstStep, &is_right_move_possible, &is_left_move_possible);
-
 
 	if (!is_right_move_possible && !is_left_move_possible)
 		return new;
 
 	left_has_captured = hasCaptured(pos, left_move_pos);
 	right_has_captured = hasCaptured(pos, right_move_pos);
-
-	if (is_left_move_possible && (left_has_captured|| IsFirstStep == true))
+	if (is_left_move_possible && (left_has_captured || IsFirstStep == true))
 	{
-
 		fillNewBoard(board, pos, left_board, left_move_pos);
 		if (!left_has_captured)
 			new->next_move[LEFT] = createNewTNODE(left_board, left_move_pos, NULL, NULL, *captures_counter);
@@ -52,7 +45,6 @@ SingleSourceMovesTreeNode* FindSingleSourcesMovesHelper(Board board, checkersPos
 			left_capture_counter++;
 			(new->next_move)[LEFT] = FindSingleSourcesMovesHelper(left_board, left_move_pos, false, &left_capture_counter);
 		}
-		
 	}
 	if (is_right_move_possible && (right_has_captured || IsFirstStep == true))
 	{
@@ -66,7 +58,6 @@ SingleSourceMovesTreeNode* FindSingleSourcesMovesHelper(Board board, checkersPos
 		}
 	}
 	return new;
-
 }
 
 bool hasCaptured(checkersPos curr, checkersPos new)
