@@ -43,11 +43,13 @@ void makeMultipleMovesEmptyList(MultipleSourceMovesList* lst);
 /*this function checks if a single source list contains only 1 node*/
 bool isPossibleMove(SingleSourceMovesList lst);
 
-
+/*This function inserts new SingleSourceMovesList to the end of MultipleSourceMovesList*/
 void insertDataToEndOfMultipleMovesList(MultipleSourceMovesList* lst, SingleSourceMovesList* single_moves_list);
 
+/*This function inserts a new node to the end of the list*/
 void insertNodeToEndOfMultipleMovesList(MultipleSourceMovesList* lst, MultipleSourceMovesListCell* node);
 
+/*This function inserts new data to a players multiple moves list*/
 void insertDataToPlayersPlaceInList(MultipleSourceMovesList* lst, SingleSourceMovesList* single_moves_lst, Player player);
 
 #endif // !MULTIPLE_SOURCE_MOVES_LIST_H

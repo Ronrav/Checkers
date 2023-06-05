@@ -18,7 +18,7 @@
 #define NOT_FOUND 0
 #define LEFT 0
 #define RIGHT 1
-# define T_NEXT_ROW 1
+#define T_NEXT_ROW 1
 #define B_NEXT_ROW (-1)
 #define T_COL_FROM_RIGHT (-1)
 #define T_COL_FROM_LEFT 1
@@ -39,8 +39,9 @@ typedef struct SingleSourceMovesTree {
 	SingleSourceMovesTreeNode* source;
 }SingleSourceMovesTree;
 
+
 /* 
-	Allocatesand returns a SingleSourceMovesTree for a specified checker on a game board.
+	Allocates and returns a SingleSourceMovesTree for a specified checker on a game board.
 	Returns NULL if the position is empty or memory allocation fails.
 */
 SingleSourceMovesTree* FindSingleSourceMoves(Board board, checkersPos* src);

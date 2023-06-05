@@ -1,8 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "singleSourceMovesTree.h"
 
-//this function gets a board and chekers pos pointer.
-// it returns a Single Source Moves Tree with all the possiblle moves
+
 SingleSourceMovesTree* FindSingleSourceMoves(Board board, checkersPos* src)
 {
 	SingleSourceMovesTree* new;
@@ -95,7 +94,6 @@ void fillNewBoard(Board src, checkersPos curr_pos, Board dest, checkersPos new_p
 	}
 }
 
-
 SingleSourceMovesTreeNode* createNewTNODE(Board pboard, checkersPos pos, SingleSourceMovesTreeNode* leftp, SingleSourceMovesTreeNode* rightp, unsigned short capture_caunter)
 {
 	SingleSourceMovesTreeNode* res;
@@ -121,7 +119,6 @@ SingleSourceMovesTreeNode* createNewTNODE(Board pboard, checkersPos pos, SingleS
 
 }
 
-
 void findPossibleMoves(Board board, checkersPos pos, checkersPos* right_new_pos, checkersPos* left_new_pos, bool is_first_step, bool* is_right_possible, bool* is_left_possible)
 {
 	bool flag = true;
@@ -140,7 +137,6 @@ void findPossibleMoves(Board board, checkersPos pos, checkersPos* right_new_pos,
 
 
 }
-
 
 void initVariablesToPlayer(Player p, int* right, int* left, int* next_row)
 {
@@ -183,6 +179,7 @@ bool isOneStepAvailble (Board board, checkersPos pos, int side, int next_row)
 {
 	return (board[pos.row - 'A' + next_row][pos.col - '1' + side] == EMPTY);
 }
+
 bool Is2StepsAvailable(Board board, checkersPos pos,Player p, int side, int next_row)
 {
 	Player notMe;
@@ -207,6 +204,7 @@ bool Is2StepsAvailable(Board board, checkersPos pos,Player p, int side, int next
 	return false;
 
 }
+
 bool pIsLeftMost(Board board, checkersPos pos, Player player)
 {
 	if (player == 'B' && pos.col == B_FIRST_IN_ROW)
@@ -215,6 +213,7 @@ bool pIsLeftMost(Board board, checkersPos pos, Player player)
 		return true;
 	return false;
 }
+
 bool pIsRightMost(Board board, checkersPos pos, Player player)
 {
 	if (player == 'B' && pos.col == B_LAST_IN_ROW)
@@ -229,6 +228,7 @@ void freeTree(SingleSourceMovesTree* tree)
 	freeTreeHelper(tree->source);
 	free(tree);
 }
+
 void freeTreeHelper(SingleSourceMovesTreeNode* source)
 {
 	if (source == NULL)

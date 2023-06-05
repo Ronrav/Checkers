@@ -1,5 +1,5 @@
 #include "checkersPos.h"
-//#include <stdlib.h>
+
 checkersPos* initCheckersPos()
 {
 	checkersPos* p;

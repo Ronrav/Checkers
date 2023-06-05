@@ -15,6 +15,7 @@ void Turn(Board board, Player player)
 	freeMultipleMovesList(lst);
 	
 }
+
 void printTurnDetails(Player player, SingleSourceMovesList* lst)
 {
 	printf("\n%c's turn:\n%c%c -> %c%c", player, lst->head->position->row, lst->head->position->col, lst->tail->position->row, lst->tail->position->col);

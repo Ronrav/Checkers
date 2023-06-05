@@ -60,7 +60,6 @@ void insertNodeToEndOfMultipleMovesList(MultipleSourceMovesList* lst, MultipleSo
 
 }
 
-
 MultipleSourceMovesListCell* createNewMultipleMovesListNode(SingleSourceMovesList* single_moves_list, MultipleSourceMovesListCell* next)
 {
 	MultipleSourceMovesListCell* node = (MultipleSourceMovesListCell*)malloc(sizeof(MultipleSourceMovesListCell));
@@ -73,7 +72,6 @@ MultipleSourceMovesListCell* createNewMultipleMovesListNode(SingleSourceMovesLis
 	node->single_source_moves_list = single_moves_list;
 	return node;
 }
-
 
 void insertDataToStartOfMultipleMovesList(MultipleSourceMovesList* lst, SingleSourceMovesList* single_moves_list)
 {
